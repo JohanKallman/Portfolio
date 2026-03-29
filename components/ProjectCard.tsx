@@ -16,7 +16,7 @@ const statusStyles = {
 }
 
   return (
-    <div className="group ui-card overflow-hidden hover:-translate-y-1 transition-transform duration-300 relative">
+<div className="group ui-card overflow-hidden hover:-translate-y-1 transition duration-300">
       
       {/* Status badge */}
       <div className="absolute top-3 left-3 z-10">

@@ -5,6 +5,8 @@ import Hero from "../components/Hero"
 import ProjectCard from "../components/ProjectCard"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
+import About from "../components/About"
+import CurrentFocus from "../components/CurrentFocus"
 
 type Project = {
   title: string
@@ -18,26 +20,21 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: "AI SaaS Platform",
-    description: "Fullstack app med auth, payments och AI integration",
+    title: "Stream Schedule",
+    description:
+      "Fullstack app for searching TV shows and visualizing episode schedules in a calendar",
     image: "https://picsum.photos/600/400",
-    tech: ["Next.js", "Node", "Stripe"],
-    status: "live",
-    liveUrl: "#",
-    githubUrl: "#",
-  },
-  {
-    title: "Realtime Chat App",
-    description: "Websocket-baserad chat med rooms",
-    image: "https://picsum.photos/600/401",
-    tech: ["React", "Socket.io"],
+    tech: ["React+Vite", ".NET API", "PostgreSQL", "TMDB API"],
     status: "ongoing",
+    liveUrl: "#",
+    githubUrl: "https://github.com/JohanKallman/StreamSchedule",
   },
   {
-    title: "Next Big Idea",
-    description: "Upcoming project",
+    title: "Mobile App (TBD)",
+    description:
+      "Mobile app for second-hand trading, designed to simplify peer-to-peer exchanges.",
     image: "https://picsum.photos/600/402",
-    tech: ["TBD"],
+    tech: ["React Native"],
     status: "upcoming",
   },
 ]
@@ -51,17 +48,86 @@ export default function Home() {
       <Navbar />
 
       <div className="max-w-6xl mx-auto">
-        <Hero />
 
-        {/* Heading */}
+{/* DESKTOP GRID */}
+<div className="hidden md:grid md:grid-cols-2 gap-12 items-start">
+
+  {/* LEFT */}
+  <div>
+    <Hero />
+
+    <div className="mt-6">
+      <div className="sticky top-24 ui-card p-5 text-sm space-y-4">
+
+        <div>
+          <div className="text-zinc-500 text-xs">Location</div>
+          <div className="font-medium">Stockholm, Sweden</div>
+        </div>
+
+        <div>
+          <div className="text-zinc-500 text-xs">Experience</div>
+          <div className="font-medium">~3 years .NET</div>
+        </div>
+
+        <div>
+          <div className="text-zinc-500 text-xs">Focus</div>
+          <div className="font-medium">Backend & APIs</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  {/* RIGHT */}
+  <div className="mt-16">
+    <About />
+    <CurrentFocus />
+  </div>
+
+</div>
+
+
+{/* MOBILE LAYOUT */}
+<div className="md:hidden">
+
+  <Hero />
+
+  <div className="mt-6 ui-card p-4 text-sm space-y-4">
+
+    <div>
+      <div className="text-zinc-500 text-xs">Location</div>
+      <div className="font-medium">Stockholm, Sweden</div>
+    </div>
+
+    <div>
+      <div className="text-zinc-500 text-xs">Experience</div>
+      <div className="font-medium">~3 years .NET</div>
+    </div>
+
+    <div>
+      <div className="text-zinc-500 text-xs">Focus</div>
+      <div className="font-medium">Backend & APIs</div>
+    </div>
+
+  </div>
+
+  <div className="mt-10">
+    <About />
+    <CurrentFocus />
+  </div>
+
+</div>
+
+        {/* PROJECTS */}
         <h2 className="ui-heading mt-20 mb-6">
           Projects
         </h2>
 
-        {/* TABS */}
-          <div className="relative mt-6">
-            <div className="flex gap-6 border-b border-zinc-800">
-            {["all", "live", "ongoing", "upcoming"].map((tab) => {
+        {/* Tabs */}
+        <div className="relative mt-6">
+          <div className="flex gap-6 border-b border-zinc-800">
+            {["all", "ongoing", "upcoming"].map((tab) => {
               const isActive = activeTab === tab
 
               return (
@@ -76,13 +142,12 @@ export default function Home() {
                 >
                   {tab.charAt(0).toUpperCase() + tab.slice(1)}
 
-                  {/* Underline */}
                   <span
-                  className={`absolute left-0 -bottom-px h-0.5 w-full bg-white transition-all duration-300 ${
-                    isActive
-                      ? "opacity-100 scale-x-100"
-                      : "opacity-0 scale-x-0"
-                  }`}
+                    className={`absolute left-0 -bottom-px h-0.5 w-full bg-white transition-all duration-300 ${
+                      isActive
+                        ? "opacity-100 scale-x-100"
+                        : "opacity-0 scale-x-0"
+                    }`}
                   />
                 </button>
               )
@@ -90,7 +155,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Grid */}
+        {/* GRID */}
         <section
           id="projects"
           className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3"
@@ -103,6 +168,7 @@ export default function Home() {
               <ProjectCard key={p.title} project={p} />
             ))}
         </section>
+
       </div>
 
       <Footer />

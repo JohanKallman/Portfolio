@@ -2,24 +2,29 @@
 
 export default function Hero() {
   return (
-    <section className="py-32">
-      <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight">
-        Fullstack Developer
+    <section className="pt-20 pb-6 md:py-24">
+
+      <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight tracking-tight">
+        .NET Developer
       </h1>
 
-      <p className="ui-text mt-6 max-w-xl">
-        I build fast, scalable web applications with modern technologies.
+      <p className="mt-6 max-w-xl text-zinc-400 text-base sm:text-lg leading-relaxed">
+        Building APIs, database-driven systems and scalable backend solutions
+        with a focus on clean architecture and real-world applications.
       </p>
 
-      <div className="mt-8 flex flex-wrap gap-4">
-       <button className="ui-btn-primary">
-          View Projects
-        </button>
-
-        <button className="ui-btn-secondary">
-          Contact
-        </button>
+      {/* Tech stack */}
+      <div className="mt-6 flex flex-wrap gap-2">
+        {[".NET", "C#", "ASP.NET Core", "SQL Server", "REST APIs", "React"].map((tech) => (
+          <span
+            key={tech}
+            className="text-xs bg-zinc-800 px-2 py-1 rounded-md border border-zinc-700"
+          >
+            {tech}
+          </span>
+        ))}
       </div>
+
     </section>
   )
 }
