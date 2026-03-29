@@ -7,16 +7,16 @@ export default function Hero() {
         Fullstack Developer
       </h1>
 
-      <p className="text-zinc-400 mt-6 text-base sm:text-lg max-w-xl">
+      <p className="ui-text mt-6 max-w-xl">
         I build fast, scalable web applications with modern technologies.
       </p>
 
       <div className="mt-8 flex flex-wrap gap-4">
-        <button className="bg-white text-black px-6 py-3 rounded-xl font-medium hover:opacity-90 transition">
+       <button className="ui-btn-primary">
           View Projects
         </button>
 
-        <button className="border border-zinc-700 px-6 py-3 rounded-xl hover:border-white transition">
+        <button className="ui-btn-secondary">
           Contact
         </button>
       </div>

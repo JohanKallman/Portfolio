@@ -59,7 +59,7 @@ export default function Navbar() {
           <a
             href="#projects"
             onClick={() => setOpen(false)}
-            className="hover:text-white transition"
+            className="ui-link"
           >
             Projects
           </a>
@@ -67,7 +67,7 @@ export default function Navbar() {
           <a
             href="#contact"
             onClick={() => setOpen(false)}
-            className="hover:text-white transition"
+            className="ui-link"
           >
             Contact
           </a>

@@ -9,7 +9,7 @@ type Project = {
 
 export default function ProjectCard({ project }: { project: Project }) {
   return (
-    <div className="group bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800 hover:border-white transition duration-300 shadow-lg hover:shadow-2xl">
+    <div className="group ui-card overflow-hidden hover:-translate-y-1 transition-transform duration-300">
       
       {/* Image */}
       <div className="overflow-hidden">
@@ -24,7 +24,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       <div className="p-4">
         <h3 className="text-xl font-semibold">{project.title}</h3>
 
-        <p className="text-zinc-400 text-sm mt-2">
+        <p className="ui-text-muted mt-2">
           {project.description}
         </p>
 
@@ -43,13 +43,23 @@ export default function ProjectCard({ project }: { project: Project }) {
         {/* Links */}
         <div className="flex gap-4 mt-4 opacity-70 group-hover:opacity-100 transition">
           {project.liveUrl && (
-            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-blue-400 text-sm">
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 text-sm hover:underline"
+            >
               Live →
             </a>
           )}
 
           {project.githubUrl && (
-            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="text-zinc-400 text-sm">
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ui-link text-sm"
+            >
               Code →
             </a>
           )}

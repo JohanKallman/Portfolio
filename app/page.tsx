@@ -28,7 +28,7 @@ export default function Home() {
         <Navbar />
         <Hero />
         
-        <h2 className="text-2xl md:text-3xl font-semibold mt-20 mb-6">
+        <h2 className="ui-heading mt-20 mb-6">
           Projects
         </h2>
         <section id="projects" className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -37,9 +37,9 @@ export default function Home() {
           ))}
         </section>    
 
-          <Footer />
+          
       </div>
-
+      <Footer />
     </main>
   )
 }

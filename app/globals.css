@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+/* === THEME TOKENS === */
+
+:root {
+  --color-bg: #000000;
+  --color-card: #18181b;
+  --color-border: #27272a;
+
+  --color-text: #ffffff;
+  --color-text-muted: #a1a1aa;
+
+  --color-primary: #ffffff;
+  --color-primary-hover: #e4e4e7;
+
+  --color-secondary-border: #3f3f46;
+}
+
 /* Smooth rendering */
 html {
   scroll-behavior: smooth;
@@ -9,4 +25,77 @@ html {
 ::selection {
   background: white;
   color: black;
+}
+
+/* === UI SYSTEM === */
+
+/* Borders */
+.ui-border {
+  border: 1px solid var(--color-border);
+  @apply transition;
+}
+
+.ui-border:hover {
+  border-color: var(--color-text);
+}
+
+/* Card */
+.ui-card {
+  background: rgba(24, 24, 27, 0.8);
+  border: 1px solid var(--color-border);
+  @apply backdrop-blur rounded-2xl transition duration-300;
+}
+
+.ui-card:hover {
+  border-color: var(--color-text);
+}
+
+/* === BUTTON SYSTEM === */
+
+.ui-btn-primary {
+  background: var(--color-primary);
+  color: black;
+  @apply px-6 py-3 rounded-xl font-medium transition duration-200 active:scale-95;
+}
+
+.ui-btn-primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.ui-btn-secondary {
+  border: 1px solid var(--color-secondary-border);
+  color: var(--color-text);
+  @apply px-6 py-3 rounded-xl font-medium transition duration-200 active:scale-95;
+}
+
+.ui-btn-secondary:hover {
+  border-color: var(--color-text);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Links */
+.ui-link {
+  color: var(--color-text-muted);
+  @apply transition;
+}
+
+.ui-link:hover {
+  color: var(--color-text);
+}
+
+/* === TYPOGRAPHY === */
+
+.ui-text {
+  color: var(--color-text-muted);
+  @apply text-base sm:text-lg leading-relaxed;
+}
+
+.ui-text-muted {
+  color: var(--color-text-muted);
+  @apply text-sm;
+}
+
+.ui-heading {
+  color: var(--color-text);
+  @apply text-2xl md:text-3xl font-semibold;
 }
