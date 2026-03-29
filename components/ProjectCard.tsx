@@ -3,14 +3,30 @@ type Project = {
   description: string
   image: string
   tech: string[]
+  status: "live" | "ongoing" | "upcoming"
   liveUrl?: string
   githubUrl?: string
 }
 
 export default function ProjectCard({ project }: { project: Project }) {
+const statusStyles = {
+  live: "text-green-400",
+  ongoing: "text-yellow-400",
+  upcoming: "text-blue-400",
+}
+
   return (
-    <div className="group ui-card overflow-hidden hover:-translate-y-1 transition-transform duration-300">
+    <div className="group ui-card overflow-hidden hover:-translate-y-1 transition-transform duration-300 relative">
       
+      {/* Status badge */}
+      <div className="absolute top-3 left-3 z-10">
+        <span
+          className={`text-xs px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 shadow-lg shadow-black/50 uppercase tracking-wide font-medium ${statusStyles[project.status]}`}
+        >
+          {project.status}
+        </span>
+      </div>
+
       {/* Image */}
       <div className="overflow-hidden">
         <img
@@ -42,7 +58,9 @@ export default function ProjectCard({ project }: { project: Project }) {
 
         {/* Links */}
         <div className="flex gap-4 mt-4 opacity-70 group-hover:opacity-100 transition">
-          {project.liveUrl && (
+          
+          {/* Only show live button if project is live */}
+          {project.status === "live" && project.liveUrl && (
             <a
               href={project.liveUrl}
               target="_blank"
