@@ -58,21 +58,36 @@ export default function Home() {
           Projects
         </h2>
 
-        {/* Tabs */}
-        <div className="flex gap-2 overflow-x-auto pb-2">
-          {["all", "live", "ongoing", "upcoming"].map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-4 py-2 rounded-lg text-sm whitespace-nowrap transition ${
-                activeTab === tab
-                  ? "bg-white text-black"
-                  : "text-zinc-400 border border-zinc-800 hover:text-white"
-              }`}
-            >
-              {tab.charAt(0).toUpperCase() + tab.slice(1)}
-            </button>
-          ))}
+        {/* TABS */}
+          <div className="relative mt-6">
+            <div className="flex gap-6 border-b border-zinc-800">
+            {["all", "live", "ongoing", "upcoming"].map((tab) => {
+              const isActive = activeTab === tab
+
+              return (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`relative pb-3 text-sm whitespace-nowrap transition ${
+                    isActive
+                      ? "text-white"
+                      : "text-zinc-500 hover:text-white"
+                  }`}
+                >
+                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
+
+                  {/* Underline */}
+                  <span
+                  className={`absolute left-0 -bottom-px h-0.5 w-full bg-white transition-all duration-300 ${
+                    isActive
+                      ? "opacity-100 scale-x-100"
+                      : "opacity-0 scale-x-0"
+                  }`}
+                  />
+                </button>
+              )
+            })}
+          </div>
         </div>
 
         {/* Grid */}
