@@ -58,7 +58,7 @@ export default function Navbar({
           open ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       >
-        <div className="ui-mobile-menu px-6 py-4 flex flex-col gap-4">
+        <div className="ui-mobile-menu px-6 py-4 flex flex-col items-start gap-4">
 
           <a href="#projects" onClick={() => setOpen(false)} className="ui-link">
             Projects

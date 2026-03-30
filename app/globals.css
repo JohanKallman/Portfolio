@@ -116,6 +116,47 @@ NAVBAR SYSTEM ()
 }
 
 /* =========================================================
+LANGUAGE TOGGLE
+   ========================================================= */
+
+.ui-lang-toggle {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 9999px;
+
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+}
+
+.ui-lang-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 6px 8px;
+  border-radius: 9999px;
+
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.ui-lang-btn-inactive {
+  opacity: 0.6;
+}
+
+.ui-lang-btn-inactive:hover {
+  opacity: 1;
+}
+
+.ui-lang-btn-active {
+  background: var(--color-text);
+  color: var(--color-bg);
+  box-shadow: 0 0 0 1px var(--color-border);
+}
+
+
+/* =========================================================
 BUTTONS
    ========================================================= */
 
