@@ -91,6 +91,31 @@ UI SYSTEM
 }
 
 /* =========================================================
+NAVBAR SYSTEM ()
+   ========================================================= */
+
+.ui-navbar {
+  backdrop-filter: blur(12px);
+  background: color-mix(in srgb, var(--color-bg) 80%, transparent);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ui-mobile-menu {
+  backdrop-filter: blur(12px);
+  background: color-mix(in srgb, var(--color-bg) 99%, transparent);
+  border-top: 1px solid var(--color-border);
+}
+
+/* Hamburger lines */
+.ui-hamburger-line {
+  background: var(--color-text);
+  height: 2px;
+  width: 24px;
+  display: block;
+  transition: 0.3s;
+}
+
+/* =========================================================
 BUTTONS
    ========================================================= */
 

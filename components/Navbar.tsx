@@ -14,14 +14,8 @@ export default function Navbar({
   const [open, setOpen] = useState(false)
 
   return (
-    <nav
-      className="fixed top-0 left-0 w-full z-50 backdrop-blur border-b"
-      style={{
-        background: "var(--color-bg)",
-        borderColor: "var(--color-border)",
-      }}
-    >
-      <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+    <nav className="fixed top-0 left-0 w-full z-50 ui-navbar">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
 
         {/* Logo */}
         <span className="font-semibold text-lg">
@@ -50,36 +44,21 @@ export default function Navbar({
         {/* Hamburger */}
         <button
           onClick={() => setOpen(!open)}
-          className="md:hidden flex flex-col justify-center items-center gap-1 w-8 h-8"
+          className="md:hidden flex flex-col gap-1"
         >
-          <span
-            className={`block h-0.5 w-6 ${
-              open ? "rotate-45 translate-y-1.5" : ""
-            }`}
-            style={{ background: "var(--color-text)" }}
-          />
-          <span
-            className={`block h-0.5 w-6 ${
-              open ? "opacity-0" : ""
-            }`}
-            style={{ background: "var(--color-text)" }}
-          />
-          <span
-            className={`block h-0.5 w-6 ${
-              open ? "-rotate-45 -translate-y-1.5" : ""
-            }`}
-            style={{ background: "var(--color-text)" }}
-          />
+          <span className={`ui-hamburger-line ${open ? "rotate-45 translate-y-1.5" : ""}`} />
+          <span className={`ui-hamburger-line ${open ? "opacity-0" : ""}`} />
+          <span className={`ui-hamburger-line ${open ? "-rotate-45 -translate-y-1.5" : ""}`} />
         </button>
       </div>
 
-      {/* Mobile menu */}
+       {/* Mobile menu */}
       <div
-        className={`md:hidden px-6 overflow-hidden transition-all duration-300 ${
-          open ? "max-h-40 py-4" : "max-h-0"
+        className={`md:hidden absolute left-0 top-full w-full transition-all duration-300 ${
+          open ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       >
-        <div className="flex flex-col gap-4">
+        <div className="ui-mobile-menu px-6 py-4 flex flex-col gap-4">
 
           <a href="#projects" onClick={() => setOpen(false)} className="ui-link">
             Projects
@@ -97,6 +76,7 @@ export default function Navbar({
 
         </div>
       </div>
+
     </nav>
   )
 }
