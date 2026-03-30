@@ -7,6 +7,7 @@ import ProjectCard from "../components/ProjectCard"
 import About from "../components/About"
 import Footer from "../components/Footer"
 import { getContent } from "../lib/useContent"
+import Container from "../components/Container"
 
 type Project = {
   title: string
@@ -47,7 +48,7 @@ export default function Home() {
 
       <Navbar lang={lang} setLang={setLang} />
 
-      <div className="max-w-6xl mx-auto px-6">
+      <Container>
 
         {/* HERO */}
         <Hero lang={lang} />
@@ -106,7 +107,7 @@ export default function Home() {
           <About lang={lang} />
         </section>
 
-      </div>
+      </Container>
 
       <Footer />
 
