@@ -4,10 +4,47 @@
     "subtitle": "Bygger skalbara backend-system, API:er och moderna webbapplikationer."
   },
   "projects": {
-    "title": "Projekt"
+    "title": "Projekt",
+    "tabs": {
+      "all": "Alla",
+      "ongoing": "Pågående",
+      "upcoming": "Kommande"
+    }
   },
   "about": {
     "title": "Om mig",
     "text": "Backendutvecklare med erfarenhet av att bygga API:er och databaserade system i C# och .NET."
+  },
+  "navbar": {
+    "projects": "Projekt",
+    "contact": "Kontakt"
+  },
+  "common": {
+    "code": "Kod →"
+  },
+  "projectList": [
+  {
+    "title": "Stream Schema",
+    "description": "Sök TV-serier och visualisera avsnittsscheman",
+    "image": "https://picsum.photos/600/400",
+    "status": "ongoing",
+    "tech": ["React+Vite", ".NET API", "PostgreSQL"],
+    "githubUrl": "https://github.com/JohanKallman/StreamSchedule"
+  },
+  {
+    "title": "Mobilapp (TBD)",
+    "description": "Second-hand handelsapp",
+    "image": "https://picsum.photos/600/401",
+    "status": "upcoming",
+    "tech": ["React Native"]
+  }],
+  "status": {
+  "ongoing": "PÅGÅENDE",
+  "upcoming": "KOMMANDE",
+  "live": "LIVE"
+  },
+  "footer": {
+    "built": "Byggd med Next.js + TypeScript + Tailwind",
+    "updated": "Senast uppdaterad"
   }
 }

@@ -1,3 +1,5 @@
+import { getContent } from "../lib/useContent"
+
 type Project = {
   title: string
   description: string
@@ -8,7 +10,14 @@ type Project = {
   githubUrl?: string
 }
 
-export default function ProjectCard({ project }: { project: Project }) {
+export default function ProjectCard({ 
+  project,
+  lang 
+  }: {
+  project: Project 
+  lang:"en" | "sv"
+  }) 
+{
 
   /* 🔥 Vi mappar status till våra UI-klasser istället för Tailwind färger */
   const statusClass = {
@@ -17,13 +26,16 @@ export default function ProjectCard({ project }: { project: Project }) {
     upcoming: "ui-badge-info",
   }
 
+  const content = getContent(lang)
+
   return (
+    
     <div className="group ui-card overflow-hidden hover:-translate-y-1 transition duration-300 relative">
       
       {/* Status badge */}
       <div className="absolute top-3 left-3 z-10">
         <span className={`ui-badge ${statusClass[project.status]}`}>
-          {project.status}
+         {content.status[project.status]}
         </span>
       </div>
 
@@ -77,7 +89,7 @@ export default function ProjectCard({ project }: { project: Project }) {
               rel="noopener noreferrer"
               className="ui-link text-sm"
             >
-              Code →
+              {content.common.code}
             </a>
           )}
 

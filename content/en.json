@@ -4,10 +4,48 @@
     "subtitle": "Building scalable backend systems, APIs and modern web applications."
   },
   "projects": {
-    "title": "Projects"
+    "title": "Projects",
+    "tabs": {
+      "all": "All",
+      "ongoing": "Ongoing",
+      "upcoming": "Upcoming"
+    }
   },
   "about": {
     "title": "About",
     "text": "Backend developer with experience building APIs and database-driven systems using C# and .NET."
+  },
+  "navbar": {
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "common": {
+    "code": "Code →"
+  },
+  "projectList": [
+  {
+    "title": "Stream Schedule",
+    "description": "Search TV shows and visualize episode schedules",
+    "image": "https://picsum.photos/600/400",
+    "status": "ongoing",
+    "tech": ["React+Vite", ".NET API", "PostgreSQL"],
+    "githubUrl": "https://github.com/JohanKallman/StreamSchedule"
+  },
+  {
+    "title": "Mobile App (TBD)",
+    "description": "Second-hand trading app",
+    "image": "https://picsum.photos/600/401",
+    "status": "upcoming",
+    "tech": ["React Native"]
+  }]
+  ,
+  "status": {
+  "ongoing": "ONGOING",
+  "upcoming": "UPCOMING",
+  "live": "LIVE"
+  },
+  "footer": {
+    "built": "Built with Next.js + TypeScript + Tailwind",
+    "updated": "Last updated"
   }
 }

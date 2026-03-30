@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { toggleTheme } from "../lib/theme"
 import LanguageToggle from "./LanguageToggle"
 import { Sun, Moon } from "lucide-react"
+import { getContent } from "../lib/useContent"
 
 export default function Navbar({
   lang,
@@ -14,6 +15,7 @@ export default function Navbar({
 }) {
   const [open, setOpen] = useState(false)
   const [theme, setTheme] = useState<"light" | "dark">("dark")
+  const content = getContent(lang)  
 
   useEffect(() => {
   const isLight = document.documentElement.classList.contains("light")
@@ -32,13 +34,13 @@ export default function Navbar({
         {/* Desktop menu */}
         <div className="hidden md:flex gap-6 text-sm items-center">
 
-          <a href="#projects" className="ui-link">
-            Projects
-          </a>
+        <a href="#projects" className="ui-link">
+          {content.navbar.projects}
+        </a>
 
-          <a href="#contact" className="ui-link">
-            Contact
-          </a>
+        <a href="#contact" className="ui-link">
+          {content.navbar.contact}
+        </a>
 
           <LanguageToggle lang={lang} setLang={setLang} />
 
@@ -74,11 +76,11 @@ export default function Navbar({
         <div className="ui-mobile-menu px-6 py-4 flex flex-col items-start gap-4">
 
           <a href="#projects" onClick={() => setOpen(false)} className="ui-link">
-            Projects
+            {content.navbar.projects}
           </a>
 
           <a href="#contact" onClick={() => setOpen(false)} className="ui-link">
-            Contact
+            {content.navbar.contact}
           </a>
 
           <LanguageToggle lang={lang} setLang={setLang} />

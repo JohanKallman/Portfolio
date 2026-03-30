@@ -19,31 +19,15 @@ type Project = {
   githubUrl?: string
 }
 
-const projects: Project[] = [
-  {
-    title: "Stream Schedule",
-    description: "Search TV shows and visualize episode schedules",
-    image: "https://picsum.photos/600/400",
-    tech: ["React+Vite", ".NET API", "PostgreSQL"],
-    status: "ongoing",
-    githubUrl: "https://github.com/JohanKallman/StreamSchedule",
-  },
-  {
-    title: "Mobile App (TBD)",
-    description: "Second-hand trading app",
-    image: "https://picsum.photos/600/401",
-    tech: ["React Native"],
-    status: "upcoming",
-  },
-]
-
 export default function Home() {
   const [activeTab, setActiveTab] = useState("all")
-  const [lang, setLang] = useState<"en" | "sv">("en") // ✅ FIX
+  const [lang, setLang] = useState<"en" | "sv">("en")
 
-  const content = getContent(lang) // ✅ FIX
+  const content = getContent(lang) 
+const projects = content.projectList as Project[]
 
   return (
+    
     <main className="min-h-screen">
 
       <Navbar lang={lang} setLang={setLang} />
@@ -62,7 +46,7 @@ export default function Home() {
 
           {/* Tabs */}
           <div className="flex gap-6 border-b border-[var(--color-border)]">
-            {["all", "ongoing", "upcoming"].map((tab) => {
+            {(["all", "ongoing", "upcoming"] as const).map((tab) => {
               const isActive = activeTab === tab
 
               return (
@@ -75,7 +59,7 @@ export default function Home() {
                       : "text-[var(--color-text-muted)] hover:text-[var(--color-text)]"
                   }`}
                 >
-                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                  {content.projects.tabs[tab]}
 
                   <span
                     className={`absolute left-0 -bottom-px h-0.5 w-full bg-[var(--color-text)] transition-all duration-300 ${
@@ -96,7 +80,7 @@ export default function Home() {
                 (p) => activeTab === "all" || p.status === activeTab
               )
               .map((p) => (
-                <ProjectCard key={p.title} project={p} />
+                <ProjectCard key={p.title} project={p} lang={lang} />
               ))}
           </div>
 
@@ -109,7 +93,7 @@ export default function Home() {
 
       </Container>
 
-      <Footer />
+     <Footer lang={lang} />
 
     </main>
   )

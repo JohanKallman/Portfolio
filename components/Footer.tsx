@@ -1,8 +1,14 @@
-export default function Footer() {
-  const lastUpdated = new Date().toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-  })
+import { getContent } from "../lib/useContent"
+
+export default function Footer({ lang }: { lang: "en" | "sv" }) {
+  const content = getContent(lang)
+
+ const locale = lang === "sv" ? "sv-SE" : "en-US"
+
+const lastUpdated = new Date().toLocaleDateString(locale, {
+  year: "numeric",
+  month: "short",
+})
 
   return (
     <footer className="mt-32 border-t w-full" style={{ borderColor: "var(--color-border)" }}>
@@ -14,11 +20,11 @@ export default function Footer() {
           <span>© {new Date().getFullYear()} Johan Källman</span>
 
           <span className="text-xs">
-            Built with Next.js + TypeScript + Tailwind
+            {content.footer.built}
           </span>
 
           <span className="text-xs">
-            Last updated: {lastUpdated}
+            {content.footer.updated}: {lastUpdated}
           </span>
         </div>
 
