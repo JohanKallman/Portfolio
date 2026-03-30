@@ -1,25 +1,19 @@
-export default function About() {
+"use client"
+
+import { getContent } from "../lib/useContent"
+
+export default function About({ lang }: { lang: "en" | "sv" }) {
+  const content = getContent(lang)
+
   return (
-    <section className="mt-12 max-w-xl">
-      <h2 className="ui-heading mb-4">About</h2>
+    <div>
+      <h2 className="ui-heading mb-6">
+        {content.about.title}
+      </h2>
 
       <p className="ui-text">
-        Backend developer with experience building APIs and database-driven 
-        systems using C# and .NET. I have worked with both new development 
-        and improving existing systems in production environments.
+        {content.about.text}
       </p>
-
-      <p className="ui-text mt-4">
-        My work includes REST API development, SQL optimization, integrations 
-        with external services and implementing solutions based on clean 
-        architecture principles.
-      </p>
-
-      <p className="ui-text mt-4">
-        Experience also includes system integrations, background jobs and 
-        mobile app development for iOS and Android.
-      </p>
-
-    </section>
+    </div>
   )
 }

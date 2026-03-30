@@ -1,12 +1,12 @@
 "use client"
 
 import { useState } from "react"
+import Navbar from "../components/Navbar"
 import Hero from "../components/Hero"
 import ProjectCard from "../components/ProjectCard"
-import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
 import About from "../components/About"
-import CurrentFocus from "../components/CurrentFocus"
+import Footer from "../components/Footer"
+import { getContent } from "../lib/useContent"
 
 type Project = {
   title: string
@@ -21,19 +21,16 @@ type Project = {
 const projects: Project[] = [
   {
     title: "Stream Schedule",
-    description:
-      "Fullstack app for searching TV shows and visualizing episode schedules in a calendar",
+    description: "Search TV shows and visualize episode schedules",
     image: "https://picsum.photos/600/400",
-    tech: ["React+Vite", ".NET API", "PostgreSQL", "TMDB API"],
+    tech: ["React+Vite", ".NET API", "PostgreSQL"],
     status: "ongoing",
-    liveUrl: "#",
     githubUrl: "https://github.com/JohanKallman/StreamSchedule",
   },
   {
     title: "Mobile App (TBD)",
-    description:
-      "Mobile app for second-hand trading, designed to simplify peer-to-peer exchanges.",
-    image: "https://picsum.photos/600/402",
+    description: "Second-hand trading app",
+    image: "https://picsum.photos/600/401",
     tech: ["React Native"],
     status: "upcoming",
   },
@@ -41,92 +38,29 @@ const projects: Project[] = [
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("all")
+  const [lang, setLang] = useState<"en" | "sv">("en") // ✅ FIX
+
+  const content = getContent(lang) // ✅ FIX
 
   return (
-    <main className="min-h-screen bg-black text-white px-6">
-      
-      <Navbar />
+    <main className="min-h-screen">
 
-      <div className="max-w-6xl mx-auto">
+      <Navbar lang={lang} setLang={setLang} />
 
-{/* DESKTOP GRID */}
-<div className="hidden md:grid md:grid-cols-2 gap-12 items-start">
+      <div className="max-w-6xl mx-auto px-6">
 
-  {/* LEFT */}
-  <div>
-    <Hero />
-
-    <div className="mt-6">
-      <div className="sticky top-24 ui-card p-5 text-sm space-y-4">
-
-        <div>
-          <div className="text-zinc-500 text-xs">Location</div>
-          <div className="font-medium">Stockholm, Sweden</div>
-        </div>
-
-        <div>
-          <div className="text-zinc-500 text-xs">Experience</div>
-          <div className="font-medium">~3 years .NET</div>
-        </div>
-
-        <div>
-          <div className="text-zinc-500 text-xs">Focus</div>
-          <div className="font-medium">Backend & APIs</div>
-        </div>
-
-      </div>
-    </div>
-
-  </div>
-
-  {/* RIGHT */}
-  <div className="mt-16">
-    <About />
-    <CurrentFocus />
-  </div>
-
-</div>
-
-
-{/* MOBILE LAYOUT */}
-<div className="md:hidden">
-
-  <Hero />
-
-  <div className="mt-6 ui-card p-4 text-sm space-y-4">
-
-    <div>
-      <div className="text-zinc-500 text-xs">Location</div>
-      <div className="font-medium">Stockholm, Sweden</div>
-    </div>
-
-    <div>
-      <div className="text-zinc-500 text-xs">Experience</div>
-      <div className="font-medium">~3 years .NET</div>
-    </div>
-
-    <div>
-      <div className="text-zinc-500 text-xs">Focus</div>
-      <div className="font-medium">Backend & APIs</div>
-    </div>
-
-  </div>
-
-  <div className="mt-10">
-    <About />
-    <CurrentFocus />
-  </div>
-
-</div>
+        {/* HERO */}
+        <Hero lang={lang} />
 
         {/* PROJECTS */}
-        <h2 className="ui-heading mt-20 mb-6">
-          Projects
-        </h2>
+        <section id="projects" className="mt-16">
 
-        {/* Tabs */}
-        <div className="relative mt-6">
-          <div className="flex gap-6 border-b border-zinc-800">
+          <h2 className="ui-heading mb-6">
+            {content.projects.title}
+          </h2>
+
+          {/* Tabs */}
+          <div className="flex gap-6 border-b border-[var(--color-border)]">
             {["all", "ongoing", "upcoming"].map((tab) => {
               const isActive = activeTab === tab
 
@@ -134,16 +68,16 @@ export default function Home() {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`relative pb-3 text-sm whitespace-nowrap transition ${
+                  className={`relative pb-3 text-sm transition ${
                     isActive
-                      ? "text-white"
-                      : "text-zinc-500 hover:text-white"
+                      ? "text-[var(--color-text)]"
+                      : "text-[var(--color-text-muted)] hover:text-[var(--color-text)]"
                   }`}
                 >
                   {tab.charAt(0).toUpperCase() + tab.slice(1)}
 
                   <span
-                    className={`absolute left-0 -bottom-px h-0.5 w-full bg-white transition-all duration-300 ${
+                    className={`absolute left-0 -bottom-px h-0.5 w-full bg-[var(--color-text)] transition-all duration-300 ${
                       isActive
                         ? "opacity-100 scale-x-100"
                         : "opacity-0 scale-x-0"
@@ -153,25 +87,29 @@ export default function Home() {
               )
             })}
           </div>
-        </div>
 
-        {/* GRID */}
-        <section
-          id="projects"
-          className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3"
-        >
-          {projects
-            .filter(
-              (p) => activeTab === "all" || p.status === activeTab
-            )
-            .map((p) => (
-              <ProjectCard key={p.title} project={p} />
-            ))}
+          {/* Grid */}
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {projects
+              .filter(
+                (p) => activeTab === "all" || p.status === activeTab
+              )
+              .map((p) => (
+                <ProjectCard key={p.title} project={p} />
+              ))}
+          </div>
+
+        </section>
+
+        {/* ABOUT */}
+        <section id="about" className="mt-24 max-w-2xl">
+          <About lang={lang} />
         </section>
 
       </div>
 
       <Footer />
+
     </main>
   )
 }

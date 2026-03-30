@@ -1,26 +1,28 @@
 "use client"
 
-export default function Hero() {
-  return (
-    <section className="pt-20 pb-6 md:py-24">
+import { getContent } from "../lib/useContent"
 
-      <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight tracking-tight">
-        .NET Developer
+export default function Hero({ lang }: { lang: "en" | "sv" }) {
+  const content = getContent(lang)
+
+  return (
+    <section className="pt-24 pb-10">
+
+      <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight">
+        {content.hero.title}
       </h1>
 
-      <p className="mt-6 max-w-xl text-zinc-400 text-base sm:text-lg leading-relaxed">
-        Building APIs, database-driven systems and scalable backend solutions
-        with a focus on clean architecture and real-world applications.
+      <p className="ui-text mt-6 max-w-xl">
+        {content.hero.subtitle}
       </p>
 
-      {/* Tech stack */}
-      <div className="mt-6 flex flex-wrap gap-2">
-        {[".NET", "C#", "ASP.NET Core", "SQL Server", "REST APIs", "React"].map((tech) => (
+      <div className="flex flex-wrap gap-2 mt-6">
+        {[".NET", "C#", "ASP.NET Core", "SQL", "APIs", "React"].map((t) => (
           <span
-            key={tech}
-            className="text-xs bg-zinc-800 px-2 py-1 rounded-md border border-zinc-700"
+            key={t}
+            className="text-xs px-2 py-1 rounded border border-[var(--color-border)] bg-[var(--color-card)] text-[var(--color-text)]"
           >
-            {tech}
+            {t}
           </span>
         ))}
       </div>

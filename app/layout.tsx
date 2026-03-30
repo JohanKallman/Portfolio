@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Johan Källman | Fullstack Developer",
-  description: "Portfolio showcasing fullstack projects and modern web and mobile development.",
+  description:
+    "Portfolio showcasing fullstack projects and modern web and mobile development.",
 }
 
 export default function RootLayout({
@@ -27,7 +28,25 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
-      <body className="bg-black text-white antialiased selection:bg-white selection:text-black">
+      <head>
+        {/* 🔥 Theme init (NO FLASH) */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const theme = localStorage.getItem("theme");
+                  if (theme === "light") {
+                    document.documentElement.classList.add("light");
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
+
+      <body className="antialiased">
         {children}
       </body>
     </html>

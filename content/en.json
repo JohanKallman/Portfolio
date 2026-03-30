@@ -1,0 +1,13 @@
+{
+  "hero": {
+    "title": ".NET Developer",
+    "subtitle": "Building scalable backend systems, APIs and modern web applications."
+  },
+  "projects": {
+    "title": "Projects"
+  },
+  "about": {
+    "title": "About",
+    "text": "Backend developer with experience building APIs and database-driven systems using C# and .NET."
+  }
+}
