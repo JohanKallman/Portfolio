@@ -1,8 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { toggleTheme } from "../lib/theme"
 import LanguageToggle from "./LanguageToggle"
+import { Sun, Moon } from "lucide-react"
 
 export default function Navbar({
   lang,
@@ -12,6 +13,12 @@ export default function Navbar({
   setLang: (lang: "en" | "sv") => void
 }) {
   const [open, setOpen] = useState(false)
+  const [theme, setTheme] = useState<"light" | "dark">("dark")
+
+  useEffect(() => {
+  const isLight = document.documentElement.classList.contains("light")
+  setTheme(isLight ? "light" : "dark")
+}, [])
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 ui-navbar">
@@ -35,8 +42,14 @@ export default function Navbar({
 
           <LanguageToggle lang={lang} setLang={setLang} />
 
-          <button onClick={toggleTheme} className="ui-link">
-            Theme
+          <button
+            onClick={() => {
+              toggleTheme()
+              setTheme(prev => (prev === "light" ? "dark" : "light"))
+            }}
+            className="ui-link flex items-center"
+          >
+            {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
           </button>
 
         </div>
@@ -70,8 +83,14 @@ export default function Navbar({
 
           <LanguageToggle lang={lang} setLang={setLang} />
 
-          <button onClick={toggleTheme} className="ui-link text-left">
-            Theme
+          <button
+            onClick={() => {
+              toggleTheme()
+              setTheme(prev => (prev === "light" ? "dark" : "light"))
+            }}
+            className="ui-link flex items-center"
+          >
+            {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
           </button>
 
         </div>
