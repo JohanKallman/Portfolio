@@ -16,12 +16,10 @@ export default function Hero({ lang }: { lang: "en" | "sv" }) {
         {content.hero.subtitle}
       </p>
 
+      {/* 🔥 använder ui-pill istället */}
       <div className="flex flex-wrap gap-2 mt-6">
         {[".NET", "C#", "ASP.NET Core", "SQL", "APIs", "React"].map((t) => (
-          <span
-            key={t}
-            className="text-xs px-2 py-1 rounded border border-[var(--color-border)] bg-[var(--color-card)] text-[var(--color-text)]"
-          >
+          <span key={t} className="ui-pill">
             {t}
           </span>
         ))}

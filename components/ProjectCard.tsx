@@ -9,10 +9,12 @@ type Project = {
 }
 
 export default function ProjectCard({ project }: { project: Project }) {
-  const statusStyles = {
-    live: "text-green-400",
-    ongoing: "text-yellow-400",
-    upcoming: "text-blue-400",
+
+  /* 🔥 Vi mappar status till våra UI-klasser istället för Tailwind färger */
+  const statusClass = {
+    live: "ui-badge-success",
+    ongoing: "ui-badge-warning",
+    upcoming: "ui-badge-info",
   }
 
   return (
@@ -20,9 +22,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       
       {/* Status badge */}
       <div className="absolute top-3 left-3 z-10">
-        <span
-          className={`text-xs px-3 py-1 rounded-full backdrop-blur border border-white/10 bg-black/60 uppercase ${statusStyles[project.status]}`}
-        >
+        <span className={`ui-badge ${statusClass[project.status]}`}>
           {project.status}
         </span>
       </div>
@@ -38,6 +38,7 @@ export default function ProjectCard({ project }: { project: Project }) {
 
       {/* Content */}
       <div className="p-4">
+
         <h3 className="text-lg font-semibold">
           {project.title}
         </h3>
@@ -49,10 +50,7 @@ export default function ProjectCard({ project }: { project: Project }) {
         {/* Tech */}
         <div className="flex flex-wrap gap-2 mt-3">
           {project.tech.map((t) => (
-            <span
-              key={t}
-              className="text-xs px-2 py-1 rounded border border-[var(--color-border)] bg-[var(--color-card)] text-[var(--color-text)]"
-            >
+            <span key={t} className="ui-pill">
               {t}
             </span>
           ))}
@@ -66,7 +64,7 @@ export default function ProjectCard({ project }: { project: Project }) {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 text-sm hover:underline"
+              className="ui-link text-sm"
             >
               Live →
             </a>
@@ -84,8 +82,8 @@ export default function ProjectCard({ project }: { project: Project }) {
           )}
 
         </div>
-      </div>
 
+      </div>
     </div>
   )
 }
