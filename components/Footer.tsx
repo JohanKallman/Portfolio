@@ -11,7 +11,7 @@ const lastUpdated = new Date().toLocaleDateString(locale, {
 })
 
   return (
-    <footer className="mt-32 border-t w-full" style={{ borderColor: "var(--color-border)" }}>
+    <footer className="mt-32 border-t w-full" style={{ borderColor: "var(--color-border)", background: "var(--color-bg-footer)"}}>
       
       <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm">
 
@@ -19,7 +19,7 @@ const lastUpdated = new Date().toLocaleDateString(locale, {
         <div className="flex flex-col gap-1 ui-text-muted">
           <span>© {new Date().getFullYear()} Johan Källman</span>
 
-          <span className="text-xs">
+          <span className="text-xs">  
             {content.footer.built}
           </span>
 
